@@ -1,573 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACOM360 | Student Portfolio Template</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jayla Lilley's creative portfolio.">
+  <title>Jayla Lilley | Portfolio</title>
 
-    <style>
-        /* --- DESIGN STYLES (CSS) --- */
-        
-        :root {
-            --bg-dark: #111111;
-            --bg-card: #1a1a1a;
-            --text-light: #ffffff;
-            --text-muted: #a0a0a0;
-            --accent-color: #C4A052; /* Earth Yellow */
+  <!-- Elegant serif headings + clean sans-serif body, matching the reference design. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
-            /* Custom colors for the Featured Works cards */
-            --card-1: #8CC63F; /* Lime Green */
-            --card-2: #008C95; /* Teal */
-            --card-3: #3CB371; /* Forest Green */
-            --card-4: #C4A052; /* Earth Yellow */
-            
-            /* This is the magic formula that perfectly constrains the width! */
-            --edge-padding: max(5%, calc((100% - 1100px) / 2));
-        }
+  <style>
+    :root {
+      --bg: #111111;
+      --surface: #1a1a1a;
+      --surface-light: #222222;
+      --text: #ffffff;
+      --muted: #a0a0a0;
+      --gold: #c4a052;
+      --lime: #8cc63f;
+      --teal: #008c95;
+      --green: #3cb371;
+      --page-width: 1100px;
+      --gutter: max(5%, calc((100% - var(--page-width)) / 2));
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Roboto", sans-serif;
+      line-height: 1.65;
+    }
+    h1, h2, h3, .brand { font-family: "Playfair Display", serif; }
+    a { color: inherit; }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-        }
+    .site-nav {
+      position: fixed;
+      z-index: 10;
+      inset: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1.25rem var(--gutter);
+      background: rgba(17, 17, 17, .96);
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      backdrop-filter: blur(12px);
+    }
+    .brand { color: var(--text); font-size: 1.35rem; font-weight: 700; letter-spacing: .08em; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      color: var(--text);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--gold); }
 
-        h1, h2, h3, .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: min(78vh, 680px);
+      margin-top: 72px;
+      overflow: hidden;
+      align-items: end;
+      background: var(--surface-light);
+      border-bottom: 1px solid #333;
+    }
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      opacity: .68;
+    }
+    .hero::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.05)); }
+    .hero-content { position: relative; z-index: 1; width: min(100% - 2rem, var(--page-width)); margin: 0 auto; padding: 5rem 0; }
+    .eyebrow { color: var(--gold); font-size: .78rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+    .hero h1 { max-width: 760px; margin: .7rem 0 1rem; font-size: clamp(3rem, 8vw, 6.4rem); line-height: 1.04; }
+    .hero p { max-width: 540px; color: #e2e2e2; font-size: 1.1rem; }
+    .button {
+      display: inline-block;
+      margin-top: 1.8rem;
+      padding: .8rem 1.25rem;
+      border: 1px solid var(--gold);
+      color: var(--text);
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s ease, background .2s ease;
+    }
+    .button:hover, .button:focus-visible { background: var(--gold); color: var(--bg); }
 
-        /* Navigation Bar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem var(--edge-padding); 
-            background-color: rgba(17, 17, 17, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(51, 51, 51, 0.5);
-        }
+    section { border-bottom: 1px solid #333; }
+    .section-wrap { width: min(100% - 2rem, var(--page-width)); margin: 0 auto; padding: 5.5rem 0; }
+    .section-heading { margin-bottom: 2rem; color: var(--gold); font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.15; }
+    .intro-copy { max-width: 850px; color: var(--muted); font-size: 1.08rem; }
+    .intro-copy p + p { margin-top: 1rem; }
 
-        .logo {
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            color: var(--text-light);
-            text-decoration: none;
-        }
+    .about-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      background: var(--surface);
+      transition: background .3s ease;
+    }
+    .about-card:hover { background: var(--gold); }
+    .about-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(2rem, 6vw, 4rem); }
+    .about-copy h2 { margin-bottom: 1rem; color: var(--gold); font-size: clamp(2rem, 4vw, 3rem); transition: color .3s ease; }
+    .about-copy p { color: var(--muted); transition: color .3s ease; }
+    .about-card:hover .about-copy h2, .about-card:hover .about-copy p { color: var(--bg); }
+    .about-image-link { display: block; min-height: 340px; }
+    .about-image-link img { display: block; width: 100%; height: 100%; min-height: 340px; object-fit: cover; transition: opacity .2s ease; }
+    .about-image-link:hover img { opacity: .88; }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
+    .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+    .work-card {
+      --card-accent: var(--lime);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--surface);
+      border-bottom: 3px solid var(--card-accent);
+      text-decoration: none;
+      transition: transform .25s ease, background .25s ease;
+    }
+    .work-card:nth-child(3n + 2) { --card-accent: var(--teal); }
+    .work-card:nth-child(3n) { --card-accent: var(--green); }
+    .work-card:hover, .work-card:focus-visible { transform: translateY(-7px); background: var(--card-accent); }
+    .work-card img { width: 100%; height: 230px; object-fit: cover; background: var(--surface-light); }
+    .work-card-copy { padding: 1.35rem; }
+    .work-card h3 { margin-bottom: .45rem; font-size: 1.45rem; }
+    .work-card p { color: var(--muted); font-size: .95rem; }
+    .work-card:hover h3, .work-card:hover p, .work-card:focus-visible h3, .work-card:focus-visible p { color: var(--bg); }
+    .tag { display: inline-block; margin-bottom: .55rem; color: var(--gold); font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+    .work-card:hover .tag, .work-card:focus-visible .tag { color: var(--bg); }
 
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
+    .contact { background: #0b0b0b; text-align: center; }
+    .contact .section-wrap { padding: 4rem 0; }
+    .contact p { color: var(--muted); }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin: 1.5rem 0 2rem; }
+    .contact-links a { color: var(--gold); text-decoration: none; }
+    .contact-links a:hover, .contact-links a:focus-visible { color: var(--text); }
+    .copyright { font-size: .8rem; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Dark Gray Divider Lines between sections */
-        header, section {
-            border-bottom: 1px solid #333;
-        }
-
-/* Hero Section */
-        header {
-            height: 60vh;
-            position: relative;
-            overflow: hidden; 
-            margin-top: 85px;
-            background-color: #222222;
-        }
-
-        /* The Background Image */
-        .hero-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            object-position: center 65%; /* Adjust this percentage to change the crop! */
-            z-index: 1;
-        }
-
-        /* Introduction Section */
-        .intro-section {
-            padding: 3rem var(--edge-padding); 
-            background-color: var(--bg-dark);
-            text-align: left;
-        }
-
-        .intro-text-container {
-            width: 100%;
-        }
-
-        .intro-text-container h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-color);
-        }
-
-        .intro-text-container p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        /* About Section (Digital Avatar) */
-        .about-section {
-            padding: 4rem var(--edge-padding);
-        }
-
-        .about-card {
-            background-color: var(--bg-card);
-            padding: 0; 
-            border-radius: 4px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0; 
-            align-items: stretch;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .about-card:hover {
-            background-color: var(--accent-color);
-        }
-
-        .about-text {
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .about-text h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-color);
-            transition: color 0.4s ease;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--text-muted);
-            transition: color 0.4s ease;
-        }
-
-        .about-card:hover .about-text h2,
-        .about-card:hover .about-text p {
-            color: var(--bg-dark);
-        }
-
-        /* Updated About Video Section to handle Images */
-        .about-video {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .about-video a {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        .about-video img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: opacity 0.3s ease;
-        }
-        
-        .about-video a:hover img {
-            opacity: 0.9;
-        }
-
-        /* Portfolio Grid Sections */
-        .portfolio-section {
-            padding: 6rem var(--edge-padding);
-        }
-
-        .portfolio-section h2 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            text-align: left;
-            color: var(--accent-color);
-        }
-
-        /* Original 3-Column Layout */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* 4-Column Layout for Posters */
-        .grid-container-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        /* The Cards */
-        .grid-item {
-            background-color: var(--bg-card);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: all 0.4s ease; 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-decoration: none; 
-            cursor: pointer;
-        }
-
-        /* Specific Hover Colors */
-        .item-1 { --hover-bg: var(--card-1); border-bottom: 3px solid var(--card-1); }
-        .item-2 { --hover-bg: var(--card-2); border-bottom: 3px solid var(--card-2); }
-        .item-3 { --hover-bg: var(--card-3); border-bottom: 3px solid var(--card-3); }
-        .item-4 { --hover-bg: var(--card-4); border-bottom: 3px solid var(--card-4); }
-
-        .grid-item-content {
-            padding: 1.5rem; 
-        }
-
-        .grid-item-content h3 {
-            font-size: 1.6rem; 
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            transition: color 0.4s ease;
-        }
-
-        .grid-item-content p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            transition: color 0.4s ease;
-        }
-
-        /* Media styling for 16:9 Video Feature Pictures */
-        .grid-item img.video-thumbnail {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        /* Media styling for Vertical Posters */
-        .grid-item img.poster-img {
-            width: 100%;
-            height: 400px; 
-            object-fit: cover;
-            object-position: top; 
-        }
-
-        /* THE HOVER MAGIC FOR CARDS */
-        .grid-item:hover {
-            transform: translateY(-10px);
-            background-color: var(--hover-bg); 
-        }
-
-        .grid-item:hover .grid-item-content h3,
-        .grid-item:hover .grid-item-content p {
-            color: var(--bg-dark);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem var(--edge-padding); 
-            background-color: #000;
-        }
-
-        /* Footer Links Styling */
-        .footer-links {
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-light);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .grid-container-4 {
-                grid-template-columns: repeat(2, 1fr); 
-            }
-        }
-
-        @media (max-width: 768px) {
-            .about-card {
-                grid-template-columns: 1fr;
-            }
-            .about-text {
-                padding: 2rem;
-            }
-            .nav-links {
-                display: none;
-            }
-            .grid-container-4 {
-                grid-template-columns: 1fr; 
-            }
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    @media (max-width: 760px) {
+      .site-nav { padding-block: 1rem; }
+      .brand { font-size: 1.1rem; }
+      .nav-links { gap: .9rem; }
+      .nav-links a { font-size: .68rem; }
+      .hero { min-height: 620px; }
+      .hero-content { padding: 4rem 0; }
+      .about-card { grid-template-columns: 1fr; }
+      .about-image-link, .about-image-link img { min-height: 280px; max-height: 380px; }
+      .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .site-nav { align-items: flex-start; flex-direction: column; gap: .5rem; }
+      .nav-links { width: 100%; justify-content: space-between; }
+      .hero { margin-top: 96px; min-height: 560px; }
+      .hero::after { background: linear-gradient(0deg, rgba(0,0,0,.8), rgba(0,0,0,.12)); }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card img { height: 250px; }
+      .section-wrap { padding: 4rem 0; }
+    }
+  </style>
 </head>
-<!-- ACOM360 STUDENT TEMPLATE: All original image src paths are preserved.
-     Every clickable portfolio image or card links to the ACOM360 YouTube channel.
-     Keep the original images/ folder beside this HTML file to display the images. -->
 <body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <!-- EDIT: Replace this brand text with your name or portfolio logo text. -->
+    <a class="brand" href="#home">JAYLA LILLEY</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <nav>
-        <a href="#" class="logo">ACOM360 Portfolio Template</a>
-        <ul class="nav-links">
-            <li><a href="#introduction">About</a></li>
-            <li><a href="#portfolio">Exhibitions</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <header class="hero" id="home">
+    <!-- EDIT IMAGE: Replace the src URL with your own wide banner image. Keep the image inside this single index.html page via a URL or an images/ path. -->
+    <img class="hero-image" src="images/hero-picture.jpg" alt="Creative portfolio banner">
+    <div class="hero-content">
+      <p class="eyebrow">Creative portfolio</p>
+      <!-- EDIT TEXT: Replace the headline and introduction below with your own role and short tagline. -->
+      <h1>Ideas made<br>to make an impact.</h1>
+      <p>A collection of creative projects, experiments, and stories. I’m Jayla, and this is where I share the work I’m proud of.</p>
+      <a class="button" href="#work">Explore my work</a>
+    </div>
+  </header>
 
-<header>
-        <img class="hero-image" src="images/hero-picture.jpg" alt="Portfolio banner image">
-    </header>
-
-    <section id="introduction" class="intro-section">
-        <div class="intro-text-container">
-            <h2>About This Portfolio</h2>
-            <p>Welcome to the ACOM360 student portfolio template. Replace this introduction with a brief description of your interests, creative goals, and the work you want to highlight.</p>
-            <p>Use this paragraph to describe your skills, your role in selected projects, and what you learned. Keep the information professional and avoid publishing private contact details.</p>
+  <main>
+    <section id="about">
+      <div class="section-wrap">
+        <p class="eyebrow">A little about me</p>
+        <h2 class="section-heading">Curiosity, creativity, and thoughtful work.</h2>
+        <div class="intro-copy">
+          <!-- EDIT TEXT: Replace these paragraphs with your own biography, interests, skills, and goals. -->
+          <p>Hi, I’m Jayla Lilley. I enjoy bringing ideas to life through visual storytelling and creative projects. This portfolio is a snapshot of what I’ve been learning, making, and exploring.</p>
+          <p>Use this space to introduce yourself, describe your creative approach, and mention the tools or skills you want visitors to know about. Keep it personal, concise, and professional.</p>
         </div>
-    </section>
-
-    <section id="about" class="about-section">
+      </div>
+      <div class="section-wrap" style="padding-top: 0;">
         <div class="about-card">
-            <div class="about-text">
-                <h2>Digital Avatar</h2>
-                <p>Example project: describe the tools, creative process, and your contributions here. The original image is retained for this template.</p>
+          <div class="about-copy">
+            <p class="eyebrow">Featured project</p>
+            <!-- EDIT TEXT: Replace this heading and description with a project highlight or a more detailed personal statement. -->
+            <h2>My creative point of view</h2>
+            <p>I believe the best work starts with a good question. This featured space can tell the story behind a project, what your role was, and what you learned along the way.</p>
+          </div>
+          <a class="about-image-link" href="#work" aria-label="See featured projects">
+            <!-- EDIT IMAGE: Replace the src URL and alt text with your featured-project image and a short description of it. -->
+            <img src="images/potfolio.png" alt="Featured creative project preview">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="section-wrap">
+        <p class="eyebrow">Selected projects</p>
+        <h2 class="section-heading">Featured work</h2>
+        <div class="work-grid">
+          <!-- PROJECT CARD: Replace each title, description, image URL, alt text, and href with your own project details. Duplicate or remove cards as needed. -->
+          <a class="work-card" href="#contact">
+            <div class="work-card-copy">
+              <span class="tag">Project one</span>
+              <h3>The Rational Illusion</h3>
+              <p>Introduce the project, your contribution, and one detail that makes the work meaningful.</p>
             </div>
-            <div class="about-video">
-                <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer">
-                    <img src="images/potfolio.png" alt="Digital Avatar Thumbnail">
-                </a>
+            <!-- EDIT IMAGE: Paste your first project image URL into src; describe the image in alt. -->
+            <img src="images/docpic.png" alt="The Rational Illusion project preview">
+          </a>
+
+          <a class="work-card" href="#contact">
+            <div class="work-card-copy">
+              <span class="tag">Project two</span>
+              <h3>Course Introduction</h3>
+              <p>Share the idea behind this piece, the tools you used, and what you learned making it.</p>
             </div>
+            <!-- EDIT IMAGE: Paste your second project image URL into src; describe the image in alt. -->
+            <img src="images/picavatar.png" alt="Course introduction project preview">
+          </a>
+
+          <a class="work-card" href="#contact">
+            <div class="work-card-copy">
+              <span class="tag">Project three</span>
+              <h3>Self Introduction</h3>
+              <p>Use a short description to explain the concept, your role, or the result of the project.</p>
+            </div>
+            <!-- EDIT IMAGE: Paste your third project image URL into src; describe the image in alt. -->
+            <img src="images/potfolio.png" alt="Self introduction project preview">
+          </a>
+
+          <a class="work-card" href="#contact">
+            <div class="work-card-copy">
+              <span class="tag">Campaign</span>
+              <h3>World News Day</h3>
+              <p>A campaign teaser exploring the value of fact-based journalism and local storytelling.</p>
+            </div>
+            <!-- EDIT IMAGE: Paste your campaign image URL into src; describe the image in alt. -->
+            <img src="images/worldpic.png" alt="World News Day campaign preview">
+          </a>
+
+          <a class="work-card" href="#contact">
+            <div class="work-card-copy">
+              <span class="tag">Interview series</span>
+              <h3>Dialogue 360</h3>
+              <p>A student-led conversation series about the ideas shaping university life today.</p>
+            </div>
+            <!-- EDIT IMAGE: Paste your project image URL into src; describe the image in alt. -->
+            <img src="images/360.png" alt="Dialogue 360 project preview">
+          </a>
+
+          <a class="work-card" href="#contact">
+            <div class="work-card-copy">
+              <span class="tag">Visual design</span>
+              <h3>Poster Showcase</h3>
+              <p>Highlight a visual design piece here and briefly explain its audience, purpose, and process.</p>
+            </div>
+            <!-- EDIT IMAGE: Paste your poster or design image URL into src; describe the image in alt. -->
+            <img src="images/005.jpg" alt="Poster design project preview">
+          </a>
         </div>
+      </div>
     </section>
+  </main>
 
-    <section id="portfolio" class="portfolio-section">
-        <h2>AI-Powered Documentaries</h2>
-   
-        <div class="grid-container">
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-1">
-                <div class="grid-item-content">
-                    <h3>The Rational Illusion</h3>
-                    <p>Sample project description. Replace with your project credits, production tools, and creative contributions.</p>
-                </div>
-                <img src="images/docpic.png" alt="The Rational Illusion" class="video-thumbnail">
-            </a>
-
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-2">
-                <div class="grid-item-content">
-                    <h3>Course Introduction</h3>
-                    <p>Sample project description. Explain the concept, production process, and tools used.</p>
-                </div>
-                <img src="images/picavatar.png" alt="Course Introduction" class="video-thumbnail">
-            </a>
-
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-3">
-                <div class="grid-item-content">
-                    <h3>Self Introduction</h3>
-                    <p>Sample project description. Explain the concept, production process, and tools used.</p>
-                </div>
-                <img src="images/potfolio.png" alt="Self Introduction" class="video-thumbnail">
-            </a>
-        </div>
-    </section>
-
-    <section id="campaigns" class="portfolio-section">
-        <h2>Campaign Teasers</h2>
-   
-        <div class="grid-container">
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-1">
-                <div class="grid-item-content">
-                    <h3>World News Day</h3>
-                    <p>This teaser kicks off our participation in World News Day 2026, a global celebration of fact‑based journalism, now in its 8th year.</p>
-                </div>
-                <img src="images/worldpic.png" alt="World News Day" class="video-thumbnail">
-            </a>
-
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-2">
-                <div class="grid-item-content">
-                    <h3>Local News Heroes</h3>
-                    <p>This is a social media campaign in response to the Local News Crisis. Students produced a series of five 30-second short videos in collaboration with local news outlets in Albany.</p>
-                </div>
-                <img src="images/localnewspic.png" alt="Local News Heroes" class="video-thumbnail">
-            </a>
-
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-3">
-                <div class="grid-item-content">
-                    <h3>Dialogue 360</h3>
-                    <p>This is a student-led interview series where we sit down with professors, students, and educators to explore the big questions shaping university life today.</p>
-                </div>
-                <img src="images/360.png" alt="Dialogue 360" class="video-thumbnail">
-            </a>
-        </div>
-    </section>
-
-    <section id="commercials" class="portfolio-section">
-        <h2>Commercial Showcase</h2>
-   
-        <div class="grid-container">
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-1">
-                <div class="grid-item-content">
-                    <h3>Deep Blue Center</h3>
-                    <p>U-shaped screen ultrawide video sample, Qingdao (for educational use only). Concept: Landmark Strategy — German planning DNA &times; Chinese context.</p>
-                </div>
-                <img src="images/deepblue.png" alt="Deep Blue Center" class="video-thumbnail">
-            </a>
-
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-2">
-                <div class="grid-item-content">
-                    <h3>Xiamen Cadaqués</h3>
-                    <p>Dali-Inspired Seaside Community, Xiamen (for educational use only). Concept: Merging surrealism (dream, time, sea motifs) with Spanish-style real estate marketing.</p>
-                </div>
-                <img src="images/kadapic.png" alt="Xiamen Cadaqués" class="video-thumbnail">
-            </a>
-
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer" class="grid-item item-3">
-                <div class="grid-item-content">
-                    <h3>Lavie Town</h3>
-                    <p>Nostalgic Film Creative Cluster, Qingdao (for educational use only). Concept: A living archive of 20th-century cinema languages, where art deco façades meet digital content hubs.</p>
-                </div>
-                <img src="images/lavie.png" alt="Lavie Town" class="video-thumbnail">
-            </a>
-        </div>
-    </section>
-
-    <section id="posters-1" class="portfolio-section">
-        <h2>Poster Showcase I</h2>
-   
-        <div class="grid-container-4">
-            <a href="images/005.jpg" target="_blank" rel="noopener noreferrer" class="grid-item item-1">
-                <div class="grid-item-content">
-                    <h3>Death of Ji Kang</h3>
-                    <p>A Contemporary Dance Theater Performance (2008, Shenzhen OCT)</p>
-                </div>
-                <img src="images/005.jpg" alt="Death of Ji Kang" class="poster-img">
-            </a>
-
-            <a href="images/006.jpg" target="_blank" rel="noopener noreferrer" class="grid-item item-2">
-                <div class="grid-item-content">
-                    <h3>Prose China (1)</h3>
-                    <p>Shenzhen Book Fair Poster 1 (2009, Shenzhen)</p>
-                </div>
-                <img src="images/006.jpg" alt="Prose China (1)" class="poster-img">
-            </a>
-
-            <a href="images/007.jpg" target="_blank" rel="noopener noreferrer" class="grid-item item-3">
-                <div class="grid-item-content">
-                    <h3>Prose China (2)</h3>
-                    <p>Shenzhen Book Fair Poster 2 (2009, Shenzhen)</p>
-                </div>
-                <img src="images/007.jpg" alt="Prose China (2)" class="poster-img">
-            </a>
-
-            <a href="images/008.jpg" target="_blank" rel="noopener noreferrer" class="grid-item item-4">
-                <div class="grid-item-content">
-                    <h3>Pathway to Heart</h3>
-                    <p>Literary Works Poster 1</p>
-                </div>
-                <img src="images/008.jpg" alt="Pathway to Heart" class="poster-img">
-            </a>
-        </div>
-    </section>
-
-    <section id="posters-2" class="portfolio-section">
-        <h2>Poster Showcase II</h2>
-   
-        <div class="grid-container-4">
-            <a href="images/009.jpg" target="_blank" rel="noopener noreferrer" class="grid-item item-1">
-                <div class="grid-item-content">
-                    <h3>Liangzhou Life</h3>
-                    <p>Literary Works Poster 2</p>
-                </div>
-                <img src="images/009.jpg" alt="Liangzhou Life" class="poster-img">
-            </a>
-
-            <a href="images/010.jpg" target="_blank" rel="noopener noreferrer" class="grid-item item-2">
-                <div class="grid-item-content">
-                    <h3>A Dream</h3>
-                    <p>Literary Works Poster 3</p>
-                </div>
-                <img src="images/010.jpg" alt="A Dream" class="poster-img">
-            </a>
-
-            <a href="images/011.jpg" target="_blank" rel="noopener noreferrer" class="grid-item item-3">
-                <div class="grid-item-content">
-                    <h3>Vibe Hang (1)</h3>
-                    <p>Sample campaign poster — replace with your project details</p>
-                </div>
-                <img src="images/011.jpg" alt="Vibe Hang (1)" class="poster-img">
-            </a>
-
-            <a href="images/012.png" target="_blank" rel="noopener noreferrer" class="grid-item item-4">
-                <div class="grid-item-content">
-                    <h3>Vibe Hang (2)</h3>
-                    <p>Sample campaign poster — replace with your project details</p>
-                </div>
-                <img src="images/012.png" alt="Vibe Hang (2)" class="poster-img">
-            </a>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <p>Contact: Add a professional or course-approved contact method here.</p>
-        
-        <div class="footer-links">
-            <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer">YouTube Channel</a>
-        </div>
-        
-        <p style="color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 ACOM360. Student portfolio template.</p>
-    </footer>
-
+  <footer class="contact" id="contact">
+    <div class="section-wrap">
+      <p class="eyebrow">Let’s connect</p>
+      <!-- EDIT TEXT: Replace the contact invitation with your own message. -->
+      <h2 class="section-heading">Have a project in mind?</h2>
+      <p>Get in touch or find more of my work online.</p>
+      <div class="contact-links">
+        <!-- EDIT LINKS: Replace each # or sample URL with your professional email and social/profile links. -->
+        <a href="mailto:your.email@example.com">Email me</a>
+        <a href="https://www.youtube.com/@acom360-k8" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="#work">Portfolio projects</a>
+      </div>
+      <!-- EDIT TEXT: Replace the name and year if desired. -->
+      <p class="copyright">&copy; 2026 Jayla Lilley. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
